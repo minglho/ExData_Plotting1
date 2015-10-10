@@ -29,11 +29,15 @@ plot(dat$Sub_metering_3, xaxt = "n", xlab = "", ylab = "",
 # Thus, Index 1441 is for "2/7/2007 00:00:00".
 axis(side = 1, at = c(1, 1441, 2881), labels = c("Sun", "Mon", "Tue")) 
 
-legend("topleft", pch = 19, col = c("black", "red", "blue"),
-       legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3")) 
-# For the legend, I don't know how to show a line. Using hyphen is 
-# short and hard to see. So I use a solid circle. Please show me in 
-# your feedback how I can use a long line as the legend symbol.
+
+temp <- legend("topleft", legend = c(" "," "," "), col = c("black", "red", "blue"),
+               text.width = strwidth("Sub_metering_3"),
+               lty = 1)
+text(temp$rect$left + temp$rect$w, temp$text$y,
+     c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), pos = 2)
+# I don't really understand the first two arguments to the function "text".
+# I copied them from "?text" and can't really make heads or tail.
+# If you can explain it to me, please do so in the feedback for the assignment.
 
 dev.copy(png, file = "plot3.png")
 dev.off()
